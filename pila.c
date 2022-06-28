@@ -18,8 +18,17 @@ void init(Pila* ptr) {
 
 void push(Pila* ptr, int elem) {
     
+    if (ptr->capacity == ptr->size) {
+        ptr->data = realloc(ptr->data, sizeof(int)*2*ptr->capacity);
+        ptr->capacity = ptr->capacity * 2;
+    }
+    ptr->data[ptr->size] = elem;
+    ptr->size++;
 }
 
 int pop(Pila* ptr) {
-
+    if (ptr->size > 0) {
+        ptr->size--;
+        return ptr->data[ptr->size];
+    }
 }
